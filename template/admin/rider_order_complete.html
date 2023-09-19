@@ -1,0 +1,81 @@
+{% extends 'includes/rider_base.html' %}
+{% block content %}
+{% load crispy_forms_tags%}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Order Confirmation</h4>
+                            <p class="card-text">Thank you for your order! Here are the details:</p>
+                            <hr>
+    
+                            <!-- Order Summary -->
+                            <h5>Order Summary</h5>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>stock</th>
+                                        <th>Quantity</th>
+                                        
+                                        <th>size</th>
+                                        <th>LA</th>
+
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Replace with dynamic data from your order -->
+                                    <tr>
+                                        <td>{{order.stock.stock_name}}</td>
+                                        <td>{{order.order_quantity}}</td>
+                                       
+                                        <td>{{order.order_size}}kg</td>
+                                        <td>{{order.order_la}}</td>
+                                        <td>#{{order.order_price}}</td>
+                                    </tr>
+                                    
+                                    <!-- Add more rows as needed -->
+                                </tbody>
+                            </table>
+
+                            <h5 class="mt-4">vendor name: {{vendor.first_name }} {{vendor.last_name}}</h5>
+                            <!-- Order Total -->
+                            <h5 class="mt-4">Order Total: {{order.order_price}}</h5>
+    
+                            <!-- Shipping Address -->
+                            <h5 class="mt-4">Detailed Address</h5>
+                            <address>
+                               
+                                {{order.address}}<br>
+                                
+                                recipient phone number : {{order.recipient_number}}
+                            </address>
+    
+                            <!-- Payment Method -->
+                            <h5 class="mt-4">Payment Method</h5>
+                            <p>Payment on delivery</p>
+                            <hr>
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                            
+                                <div class="form-group">
+                                    <label for="">Upload a clear image of you giving the recipient the order</label>
+                                    {{form.order_complete_image}}
+                                </div>
+                       <button type="submit" class="btn btn-inverse-primary">complete this order</button></a>
+
+                            </form>
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+{% endblock %}

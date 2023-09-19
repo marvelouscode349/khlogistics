@@ -1,0 +1,260 @@
+{% extends 'includes/admin_base.html' %}
+{% load static %}
+{% block content%}
+{% load static %}
+ 
+    
+      
+<!-- partial -->
+
+  <!-- partial -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+      {% include 'includes/alerts.html' %}
+     
+      <div class="row">
+        <div class="col-xl-4 col-sm-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="d-flex align-items-center align-self-start">
+                    <h3 class="mb-0">{{users}}</h3>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="icon icon-box-success ">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                  </div>
+                </div>
+              </div>
+              <h6 class="text-muted font-weight-normal">Total users</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-sm-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="d-flex align-items-center align-self-start">
+                    <h3 class="mb-0">{{approved}}</h3>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="icon icon-box-success">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                  </div>
+                </div>
+              </div>
+              <h6 class="text-muted font-weight-normal">approved user</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-sm-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="d-flex align-items-center align-self-start">
+                    <h3 class="mb-0">{{unapproved}}</h3>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="icon icon-box-danger">
+                    <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                  </div>
+                </div>
+              </div>
+              <h6 class="text-muted font-weight-normal">Unapproved users</h6>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="row">
+          <div class="col-sm-3 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h5>Stock count</h5>
+                <div class="row">
+                  <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                    <div class="d-flex d-sm-block d-md-flex align-items-center">
+                      <h2 class="mb-0">{{stock_count}}</h2>
+                    
+                    </div>
+                   
+                  </div>
+                  <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                    <i class="icon-lg mdi mdi-codepen text-primary ml-auto"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h5>Toatal stock quantities</h5>
+                <div class="row">
+                  <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                    <div class="d-flex d-sm-block d-md-flex align-items-center">
+                      <h2 class="mb-0">{{total_stock_quantity}}</h2>
+                     
+                    </div>
+                   
+                  </div>
+                  <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                    <i class="icon-lg mdi mdi-wallet-travel text-danger ml-auto"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h5>pending orders</h5>
+                <div class="row">
+                  <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                    <div class="d-flex d-sm-block d-md-flex align-items-center">
+                      <h2 class="mb-0">{{pending_order}}</h2>
+                    </div>
+                    <!-- <h6 class="text-muted font-weight-normal">pending orders</h6> -->
+                  </div>
+                  <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                    <i class="icon-lg mdi mdi-monitor text-success ml-auto"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h5>orders</h5>
+                <div class="row">
+                  <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                    <div class="d-flex d-sm-block d-md-flex align-items-center">
+                      <h2 class="mb-0">{{order_count}}</h2>
+                    </div>
+                    <!-- <h6 class="text-muted font-weight-normal">2.27% Since last month</h6> -->
+                  </div>
+                  <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                    <i class="icon-lg mdi mdi-monitor text-success ml-auto"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Recent Transaction</h4>
+             
+              
+             {% for payment in payments %}
+              <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                <div class="text-md-center text-xl-left">
+                  <h6 class="mb-1">Paid with {{payment.payment_type}}</h6>
+                  <p class="mb-1"> {{payment.payment_plan}} plan</p>
+                  <p class="text-muted mb-0">{{payment.date}}</p>
+                </div>
+                <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+                  <h6 class="font-weight-bold mb-0">N{{payment.amount}}</h6>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        
+      </div>
+     
+      <div class="row ">
+        <div class="col-12 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">recent orders</h4>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Vendor</th>
+                          <th>Name</th>
+                          <th>Quantity</th>
+                          <th>size</th>
+                          <th>LG</th>
+                         
+                          <th>Address</th>
+                          <th>price</th>
+                          <th>Date</th>
+                          <th>rider</th>
+                        
+                          <th>status</th>
+                          
+                          
+                          
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for order in orders %}
+                      <tr>
+                          <td>{{order.user.username}}</td>
+                          <td>{{ order.order_name }}</td>
+                          <td>{{ order.order_quantity }}</td>
+                          <td>{{ order.order_size }}kg</td>
+                          <td>{{ order.order_la }}</td>
+                         
+                          <td>{{ order.address}}</td>
+                          <td>N{{ order.order_price }}</td>
+                          <td>{{ order.date }}</td>
+                          <td>{{order.rider.username}}</td>
+                          <td>
+                              
+                              {% if order.status == 'uncomplete' %}
+
+                              <button class="btn btn-inverse-warning">Uncomplete order</button>
+
+                              {% elif order.status == 'pending' %}
+                              <button class="btn btn-inverse-primary">pending</button>
+
+                              {% else %}
+                              <button class="btn btn-inverse-success">completed</button>
+                              {% endif %}
+
+
+                          </td>
+
+                        
+                        
+
+                             
+                         
+                          
+                      </tr>
+                      <!-- Move the modal outside of the loop -->
+                      
+                      {% endfor %}
+                  </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+   {% include 'includes/footer.html' %}
+  <!-- main-panel ends -->
+
+<!-- page-body-wrapper ends -->
+
+</html>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'includes/base.html' %}
+{% block content %}
+
+
+
+<div class="container" style="margin-top: 100px;">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h2 class="mb-4">Payment Successful</h2>
+                    <p>Thank you for your payment. Your transaction was successful.</p>
+                    <p>Your order has been confirmed, and a receipt has been sent to your email.</p>
+                    <p>Payment ID: <strong>{{payment_details.payment_id}}</strong></p>
+                    <p>Amount: <strong>N{{payment_details.amount}}</strong></p>
+                    <p>Payment Method: <strong>{{payment_details.payment_type}}</strong></p>
+                    <p>Payment Plan: <strong>{{payment_details.payment_plan}}</strong></p>
+                    <a href="{% url 'vendor-dashboard' %}" class="btn btn-primary mt-3">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Bootstrap JS and jQuery CDN links here if needed -->
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'includes/base2.html' %}
+
+{% block content %}
+
+<div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="row w-100 m-0">
+      <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+        <div class="card col-lg-4 mx-auto">
+          
+          {% if request.GET.command %}
+          <div class="container px-5 py-5 alert alert-success">
+            <p>please check your email and click on the link to activate your account. <br> {{ request.GET.email }}</p>
+            Already activated account? <a class="btn btn-success btn-outline" href="{% url 'login' %}">Login</a>
+          </div>
+
+
+          {% else %}
+          <div class="card-body px-5 py-5">
+            <h3 class="card-title text-left mb-3">Login</h3>
+            {% include 'includes/alerts.html' %}
+            <form method="post">
+              {% csrf_token %}
+
+              <div class="form-group">
+                <label> email *</label>
+                <input name="email" type="email" class="form-control p_input">
+              </div>
+              <div class="form-group">
+                <label>Password *</label>
+                <input name="password" type="password" class="form-control p_input">
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between">
+                
+                <a href="#" class="forgot-pass">Forgot password</a>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+              </div>
+              
+              <p class="sign-up">Don't have an Account?<a href="{% url 'register' %}"> Sign Up</a></p>
+            </form>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- row ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>
+
+{% endblock %}

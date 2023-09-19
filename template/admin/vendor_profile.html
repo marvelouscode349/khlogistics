@@ -1,0 +1,117 @@
+{% extends 'includes/admin_base.html' %}
+{% load static %}
+{% block content%}
+{% load static %}
+{% load crispy_forms_tags %}
+ 
+    
+      
+<!-- partial -->
+
+  <!-- partial -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+     
+        <div class="row">
+        <div class="container col-lg-8">
+           
+            
+            <div class="card" style="width: 100%">
+                <div class="row d-flex justify-content-center py-2">
+                    <div class="col-lg-4">
+                        <a href="#passportimageModal" data-toggle="modal" data-target="#passportimageModal">
+                            <img src="{{vendor.profile.passport.url}}" alt="Image 1" class="img-thumbnail">
+                        </a>
+                        
+                </div>
+    
+                <div class="col-lg-4">
+                    <a href="#idimageModal" data-toggle="modal" data-target="#idimageModal">
+                        <img src="{{vendor.profile.id_verification.url}}" alt="Image 1" class="img-thumbnail">
+                    </a>
+                    
+            </div>
+
+            <div class="modal fade" id="idimageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imageModalLabel">Uploaded ID</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="{{vendor.profile.id_verification.url}}" alt="Image 1" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="passportimageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imageModalLabel">Uploaded Passport</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="{{vendor.profile.passport.url}}" alt="Image 1" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                        <div class="form-group">
+                            <label for="">First name</label>
+                            <input style="background-color: #2A3038" type="text" readonly value="{{vendor.first_name}}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="">last name</label>
+                            <input style="background-color: #2A3038" type="text" readonly value="{{vendor.last_name}}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="">username</label>
+                            <input style="background-color: #2A3038" type="text" readonly value="{{vendor.username}}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="">email</label>
+                            <input style="background-color: #2A3038" type="text" readonly value="{{vendor.email}}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="">phone number</label>
+                            <input style="background-color: #2A3038" type="text" readonly value="{{vendor.profile.phone_number}}" class="form-control">
+                        </div>
+                      
+                        
+                        
+                        
+                        <br>
+                    
+                       
+                    <a href="{% url 'user-approve' vendor.email %}"><button class="btn btn-primary">Approve</button></a>
+                    <a href="{%url 'user-reject'  vendor.email %}"><button style="margin-left: 30px;" type="submit" class="btn btn-danger">Reject</button></a>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     
+      
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+   {% include 'includes/footer.html' %}
+  <!-- main-panel ends -->
+
+<!-- page-body-wrapper ends -->
+
+</html>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'includes/base.html' %}
+{% block content %}
+{% load crispy_forms_tags%}
+<div class="main-panel">
+    <div class="content-wrapper">
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            {% include 'includes/alerts.html' %}
+
+          <div class="card-body">
+            <h4 class="card-title">Add stock</h4>
+            <p class="card-description">after adding stock please make sure your stocks are sent to our warehouse for confirmation</p>
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+              
+              
+                    {{addform|crispy}}
+                 
+                
+              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

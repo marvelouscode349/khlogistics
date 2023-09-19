@@ -1,0 +1,31 @@
+{% extends 'includes/base.html' %}
+{% block content %}
+{% load crispy_forms_tags%}
+<div class="main-panel">
+    <div class="content-wrapper">
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            {% include 'includes/alerts.html' %}
+
+          <div class="card-body">
+            <h4 class="card-title">Make payment</h4>
+            <p class="card-description"></p>
+            <form action="{% url 'confirm-payment' %}"  class="forms-sample" method="post">
+                {% csrf_token %}
+                {{form|crispy}}
+              
+                    
+                 
+                
+              <button type="submit" class="btn btn-primary mr-2">Pay</button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'includes/base2.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body alert alert-info">
+            <h5 class="card-title" style="color: black;">Logout Successful</h5>
+            <p class="card-text">You have been successfully logged out.</p>
+            <a href="{% url 'login' %}" class="btn btn-secondary">Login Again</a>
+        </div>
+    </div>
+</div>
+  <!-- page-body-wrapper ends -->
+</div>
+
+{% endblock %}

@@ -1,0 +1,262 @@
+{% load static %}
+   
+    
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>logistics</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'vendors/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{% static 'vendors/jvectormap/jquery-jvectormap.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/flag-icon-css/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/owl-carousel-2/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static   'vendors/owl-carousel-2/owl.theme.default.min.css' %}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+  </head>
+  <body>
+
+    {% if request.subscription_expired and request.path not in exempted_urls %}
+    
+        <div class="container-scroller">
+            {% include 'includes/navbar.html' %}
+            {% include 'includes/menu.html' %}
+            <div class="alert alert-warning" style="z-index: 2; width: 90%; height: 90%; margin-top: 60px;">
+                Your subscription has expired. Please renew it to continue accessing premium content.
+                </div>
+        {% else %}
+       
+
+    <div class="container-scroller">
+        {% include 'includes/navbar.html' %}
+        {% include 'includes/menu.html' %}
+    
+        {% block content %}
+    
+        {% endblock %}
+    
+    </div>
+    {% endif %}
+    </div>
+
+
+
+<!-- container-scroller -->
+<script>
+  let la = document.getElementById('id_order_la');
+  let price = document.getElementById('id_order_price');
+  la.addEventListener('change', function(){
+    if(la.value == 'agege'){
+      price.value =  3000;
+    }else if(la.value=='ajeromi-ifelodun'){
+        price.value=3000;
+    }
+    else if(la.value=='alimosho'){
+        price.value=4000;
+    }
+    else if(la.value=='amuwo-odofin'){
+        price.value=3000;
+    }
+     else if(la.value=='apapa'){
+        price.value=3000;
+    }
+    else if(la.value=='badagry'){
+        price.value=6000;
+    }
+    else if(la.value=='epe'){
+        price.value=10000;
+    }
+    
+    else if(la.value=='Eti-Osa'){
+        price.value=4000;
+    }
+    else if(la.value=='ibeju-lekki'){
+        price.value=8000;
+    }
+    else if(la.value=='ikeja'){
+        price.value=3000;
+    }
+    else if(la.value=='ifako-ijaiye'){
+        price.value=4000;
+    }
+    else if(la.value=='ikorodu'){
+        price.value=5000;
+    }
+    else if(la.value=='kosofe'){
+        price.value=3000;
+    }
+    else if(la.value=='lagos-island'){
+        price.value=3000;
+    }
+    else if(la.value=='lagos-mainland'){
+        price.value=3000;
+    }
+    else if(la.value=='mushin'){
+        price.value=3000;
+    }
+    else if(la.value=='oshodi-isolo'){
+        price.value=3000;
+    }
+    else if(la.value=='ojo'){
+        price.value=4000;
+    }
+    else if(la.value=='surulere'){
+        price.value=3000;
+    }
+    else if(la.value=='shomolu'){
+        price.value=3000;
+    }else{
+      price.value = 'pick a LA'
+    }
+});
+</script>
+
+<script>
+let amount = document.getElementById("id_amount");
+let plan = document.getElementById("id_payment_plan");
+ plan.addEventListener('change', function(){
+    if(plan.value == 'Monthly'){
+        amount.value = 20000
+    }
+    else if(plan.value == '6-month'){
+        amount.value = 100000
+    }
+    else if(plan.value == 'Yearly'){
+        amount.value = 200000
+    }
+    else{
+        amount.value = '';
+    }
+ })
+
+
+
+
+
+
+
+
+
+</script>
+<script src="https://dropin.vpay.africa/dropin/v1/initialise.js"></script>
+<script>
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+            const url = "{% url 'insert-payment' %}";
+            function pay(){
+                const amount = '{{amount}}';
+                const id = '{{payment_id}}';
+                const email = '{{request.user.email}}';
+                const user_id = '{{request.user.username}}';
+                const payment_type = '{{payment_type}}';
+                const payment_plan = '{{payment_plan}}';
+                const redirect_url = "{% url 'payment-successful' %}";
+               
+
+                const options = {
+                    amount: amount,
+                    currency: 'NGN',
+                    domain: 'live',
+                    key: 'ebc8acfe-b232-48a0-97cb-60d1ecb782e5',
+                    
+                    email: email,
+                    transactionref: id,
+                    customer_logo:'https://www.vpay.africa/static/media/vpayLogo.91e11322.svg',
+                    customer_service_channel: '+2348030007000, support@org.com',
+                    txn_charge: 5,
+                    txn_charge_type: 'flat',
+                    onSuccess: function(response) { 
+                        console.log('Hello World! good', response.message, response);
+                        sendData();
+                        function sendData(){
+                            fetch(url, {
+                                method: 'POST',
+                                headers:{
+                                    "content-type":"application/json",
+                                    "X-CSRFToken":csrftoken,
+                                },
+                                body: JSON.stringify({
+                                    payment_id:id,
+                                    user:user_id,
+                                    amount:amount,
+                                    email:email,
+                                    payment_type:payment_type,
+                                    payment_plan:payment_plan
+
+
+                                }),
+                            })
+                            .then((response) => response.json())
+                            .then((data) => {
+                               window.location.href = redirect_url + '?payment_id='+data.payment_id;
+                            });
+                        }
+                    
+                    
+                    
+                    
+                    },
+                    onExit: function(response) { 
+                        console.log('Hello World! bad', response); 
+                            console.log(id)}
+                                 }
+                
+                if(window.VPayDropin){
+                    const {open, exit} = VPayDropin.create(options);
+                    open();
+                }                
+            }
+    
+  
+
+
+
+</script>
+<!-- plugins:js -->
+<script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+<script src="{% static 'vendors/progressbar.js/progressbar.min.js' %}"></script>
+<script src="{% static 'vendors/jvectormap/jquery-jvectormap.min.js' %}"></script>
+<script src="{% static 'vendors/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+<script src="{% static 'vendors/owl-carousel-2/owl.carousel.min.js' %}"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="{% static 'js/off-canvas.js' %}"></script>
+<script src="{% static 'js/hoverable-collapse.js' %}"></script>
+<script src="{% static  'js/misc.js' %}"></script>
+<script src="{% static 'js/settings.js' %}"></script>
+<script src="{% static 'js/todolist.js' %}"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
+<script src="{% static 'js/dashboard.js' %}"></script>
+<script src="{% static 'js/mine.js' %}"></script>
+<!-- End custom js for this page -->
+</body>

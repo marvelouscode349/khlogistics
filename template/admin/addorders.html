@@ -1,0 +1,67 @@
+{% extends 'includes/base.html' %}
+{% block content %}
+{% load crispy_forms_tags%}
+<div class="main-panel">
+    <div class="content-wrapper">
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+           
+
+          <div class="card-body">
+            <h4 class="card-title">Add Orders</h4>
+            {% include 'includes/alerts.html' %}
+            <p class="card-description">add orders orders</p>
+            {{form.errors}}
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="">Select stock from which you want to make orders</label>
+                <div class="form-group">
+                    {{form.stock}}
+                </div>
+                <label for=""> order name</label>
+                <div class="form-group">
+                    {{form.order_name}}
+                </div>
+
+                <label for=""> order Quantity</label>
+                <div class="form-group">
+                    {{form.order_quantity}}
+                </div>
+
+                
+
+                Select Local government
+                <div class="form-group">
+                    {{form.order_la}}
+                </div>
+
+                <div class="form-group">
+                    <label for="">Price</label>
+                    {{form.order_price}}
+                </div>
+
+                detailed Address where yur order is going
+                <div class="form-group">
+                    {{form.address}}
+                </div>
+
+                phone number of recipient
+                <div class="form-group">
+                    {{form.recipient_number}}
+                </div>
+              
+                    
+                 
+                
+              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

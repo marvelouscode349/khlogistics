@@ -1,0 +1,9 @@
+{% if request.user.is_superadmin %}
+
+{% include 'admin/admin_profile.html' %}
+
+{% else %}
+
+{% include 'admin/profile.html' %}
+
+{% endif %}

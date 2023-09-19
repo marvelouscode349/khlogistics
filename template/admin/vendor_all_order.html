@@ -1,0 +1,74 @@
+{% extends 'includes/base.html' %}
+{% block content %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    {% include 'includes/alerts.html' %}
+                    <div class="card-body">
+                        <h4 class="card-title">All Orders</h4>
+                        <p class="card-description">This table contains all orders </p>
+                        <div class="table-responsive">
+                           
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Vendor</th>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th>size</th>
+                                        <th>LG</th>
+                                       
+                                        <th>Address</th>
+                                        <th>price</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td>{{order.user.username}}</td>
+                                        <td>{{ order.order_name }}</td>
+                                        <td>{{ order.order_quantity }}</td>
+                                        <td>{{ order.order_size }}</td>
+                                        <td>{{ order.order_la }}</td>
+                                       
+                                        <td>{{ order.address}}</td>
+                                        <td>N{{ order.order_price }}</td>
+                                        <td>{{ order.date }}</td>
+                                        <td>
+                                            
+                                        {% if order.status == 'uncomplete' %}
+
+                                        <button class="btn btn-inverse-warning">Uncomplete order</button>
+
+                                        {% elif order.status == 'pending' %}
+                                        <button class="btn btn-inverse-primary">pending</button>
+
+                                        {% else %}
+                                        <button class="btn btn-inverse-success">completed</button>
+                                        {% endif %}
+
+
+                                        </td>
+                                       
+                                        
+                                    </tr>
+                                    <!-- Move the modal outside of the loop -->
+                                    
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

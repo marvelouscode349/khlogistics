@@ -1,0 +1,61 @@
+{% extends 'includes/base.html' %}
+{% block content %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">All complete order</h4>
+                        <p class="card-description">This table contains only order that has being completed</p>
+                        <div class="table-responsive">
+                           
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th>Address</th>
+                                        <th>Date</th>
+                                       
+                                        <th>Status</th>
+                                        
+                                    </tr>
+                                    
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                        
+                                        <td>{{ order.order_name }}</td>
+                                        <td>{{ order.order_quantity }}</td>
+                                        <td>{{ order.address}}</td>
+                                        <td>{{ order.date }}</td>
+                                       
+                                        <td>
+                                            
+                                       
+                                        <button class="btn btn-inverse-primary">pending</button>
+
+                                       
+
+
+                                        </td>
+                                       
+                                        
+                                    </tr>
+                                    
+                                    
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

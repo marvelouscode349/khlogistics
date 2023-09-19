@@ -1,0 +1,39 @@
+{% extends 'includes/rider_base.html' %}
+{% block content %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">All orders</h4>
+                        <p class="card-description">This table includes all orders you are to deliver</p>
+                        <div class="table-responsive">
+                            {% include 'includes/alerts.html' %}
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th>Address</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                    <!-- Move the modal outside of the loop -->
+                                    
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

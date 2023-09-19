@@ -1,0 +1,173 @@
+{% extends 'includes/admin_base.html' %}
+{% block content %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">All uncompleted orders</h4>
+                        <p class="card-description">This table includes uncomplete orders</p>
+                        <div class="table-responsive">
+                            {% include 'includes/alerts.html' %}
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-5">
+    
+                                    
+                                        <div class="form-group">
+                                            <label>Select a vendor to view thier orders</label>
+                                            <select name="vendor" class="js-example-basic-single" style="width:90%">
+                                                <option value="">--select vendor--</option>
+                                                {% for vendor in vendors %}
+                                              <option value="{{vendor.id}}">{{vendor.first_name}} {{ vendor.last_name }}</option>
+    
+                                             
+                                              {% endfor %}
+    
+                                            </select>
+                                          </div>
+    
+    
+    
+    
+                                        
+                                        
+                                    </div>
+                                    <div class="col-lg-5">
+    
+                                    
+                                        <div class="form-group">
+                                            <label>Select a rider to view thier orders</label>
+                                            <select name="rider" class="js-example-basic-single" style="width:70%">
+                                                <option value="">--select rider--</option>
+                                                {% for rider in riders %}
+                                              <option value="{{rider.id}}">{{rider.first_name}} {{ rider.last_name }}</option>
+    
+                                             
+                                              {% endfor %}
+    
+                                            </select>
+    
+                                            <input  type="submit" class="btn btn-inverse-primary" value="Filter orders">
+    
+                                          </div>
+    
+                                    </div>
+    
+                                  
+    
+                                    
+                                   
+                                    
+                                        
+                                </div>
+                            </form> 
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Vendor</th>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th>size</th>
+                                        <th>LG</th>
+                                       
+                                        <th>Address</th>
+                                        <th>rider</th>
+                                        <th>price</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                        
+                                        
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td>{{order.user.username}}</td>
+                                        <td>{{ order.order_name }}</td>
+                                        <td>{{ order.order_quantity }}</td>
+                                        <td>{{ order.order_size }}kg</td>
+                                        <td>{{ order.order_la }}</td>
+                                       
+                                        <td>{{ order.address}}</td>
+                                        <td>{{ order.rider.username}}</td>
+                                        <td>N{{ order.order_price }}</td>
+                                        <td>{{ order.date }}</td>
+                                        <td>
+                                            
+                                            {% if order.status == 'uncomplete' %}
+
+                                            <button class="btn btn-inverse-warning">Uncomplete order</button>
+    
+                                            {% elif order.status == 'pending' %}
+                                            <button class="btn btn-inverse-primary">pending</button>
+    
+                                            {% else %}
+                                            <button class="btn btn-inverse-success">completed</button>
+                                            {% endif %}
+
+
+                                        </td>
+
+                                        <td>
+
+                                            {% if order.status == 'pending' %}
+
+                                            rider has being assigned
+
+                                            {% else %}
+                                            <a class="btn btn-inverse-primary" href="#" data-toggle="modal" data-target="#assignrider{{ order.pk }}">Assign rider</a>
+                                            {% endif %}
+                                            </td>
+                                      
+
+                                            <div class="modal fade" id="assignrider{{ order.pk }}" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-md">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="imageModalLabel">Stock Image</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h3>{{order.order_name}}</h3><br>
+                                                            <form action="{% url 'assign' %}" method="post">
+                                                                {% csrf_token %}
+                                                                <div class="form-group">
+                                                                <label for="">Select a rider</label>
+                                                                {{assign.rider}}
+
+                                                
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                               <input type="hidden" name="order_id" value="{{order.id}}" class="form-control">
+                                                            </div>
+
+                                                            <input type="submit" class="btn btn-primary" value="Assign">
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                       
+                                        
+                                    </tr>
+                                    <!-- Move the modal outside of the loop -->
+                                    
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

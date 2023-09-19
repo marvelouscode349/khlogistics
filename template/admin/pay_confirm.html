@@ -1,0 +1,40 @@
+{% extends 'includes/base.html' %}
+{% block content %}
+{% load crispy_forms_tags%}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">payment Confirmation</h4>
+                            <p class="card-text">Thank you for your payment, continue to pay here</p>
+                            <hr>
+    
+                            <!-- payment Summary -->
+                            <h5>payment Summary</h5>
+                          
+    
+                            <!-- Order Total -->
+
+                            <h5 class="mt-4"> payment plan: {{payment_plan}}</h5>
+                            <h5 class="mt-4">Amount: N{{amount}}</h5>
+                           
+                            <h5 class="mt-4"> payment type: {{payment_type}}</h5>
+                            <h5 class="mt-4"> payment id:{{payment_id}}</h5>
+    
+                           
+                                                      
+                            <button onclick="pay()" class="btn btn-inverse-primary">Pay Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+
+
+{% endblock %}

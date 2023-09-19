@@ -1,0 +1,77 @@
+{% extends 'includes/base.html' %}
+{% block content %}
+{% load crispy_forms_tags%}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card">
+                        <div class="card-body">
+                            {% include 'includes/alerts.html' %}
+                            <h4 class="card-title">Order Confirmation</h4>
+                            <p class="card-text">Thank you for your order! Here are the details:</p>
+                            <hr>
+    
+                            <!-- Order Summary -->
+                            <h5>Order Summary</h5>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>stock</th>
+                                        <th>Quantity</th>
+                                        
+                                        <th>size</th>
+                                        <th>LA</th>
+
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Replace with dynamic data from your order -->
+                                    <tr>
+                                        <td>{{order.stock.stock_name}}</td>
+                                        <td>{{order.order_quantity}}</td>
+                                       
+                                        <td>{{order.order_size}}kg</td>
+                                        <td>{{order.order_la}}</td>
+                                        <td>#{{order.order_price}}</td>
+                                    </tr>
+                                    
+                                    <!-- Add more rows as needed -->
+                                </tbody>
+                            </table>
+    
+                            <!-- Order Total -->
+                            <h5 class="mt-4">size: N{{price_size}}</h5>
+                            <h5 class="mt-4"> distance: N{{price_distance}}</h5>
+                            <h5 class="mt-4">Order Total: N{{order.order_price}}</h5>
+    
+                            <!-- Shipping Address -->
+                            <h5 class="mt-4">Detailed Address</h5>
+                            <address>
+                               
+                                {{order.address}}<br>
+                                
+                                recipient phone number : {{order.recipient_number}}
+                            </address>
+    
+                            <!-- Payment Method -->
+                            <h5 class="mt-4">Payment Method</h5>
+                            <p>Payment on delivery</p>
+    
+                            <!-- Thank You Message -->
+                            <div class="alert alert-success mt-4" role="alert">
+                               confirm your order! so Your items will be shipped.
+                            </div>
+                            <a href="{% url 'assign-confirm-order' order.id %}"><button class="btn btn-inverse-primary">Confirm</button></a>
+                            <a href="{% url 'reject-order' order.id %}"><button class="btn btn-inverse-danger">Reject</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+{% endblock %}

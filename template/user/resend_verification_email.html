@@ -1,0 +1,30 @@
+{% extends 'includes/base2.html' %}
+
+{% block content %}
+
+<div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="row w-100 m-0">
+      <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+        <div class="card col-lg-4 mx-auto">
+          {% include 'includes/alerts.html' %}
+          <div class="container px-5 py-5 alert alert-warning">
+            <p> For some reasons if you did not receive our email </p>
+            <form action="" method="post">
+                {% csrf_token %}
+
+                <button class="btn btn-inverse-warning" type="submit">click here resend Email</button>
+              </form>
+          </div>
+
+
+          
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- row ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>
+
+{% endblock %}
