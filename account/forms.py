@@ -47,4 +47,14 @@ class ProfileUpdateForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
 
+class AdminUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('phone_number', 'passport')
+
+    def __init__(self, *args, **kwargs):
+        super(AdminUpdateForm, self).__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
             

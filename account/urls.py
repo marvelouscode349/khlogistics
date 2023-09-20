@@ -7,6 +7,7 @@ path('resend_verification_email', views.resend_verification_email, name='resend_
 path('login', views.login, name='login'),
 path('activate/<uidb64>/<token>', views.activate, name='activate'),
 path('profile', views.profile, name='profile'),
+path('profile/admins', views.adminprofile, name='admin-profile'),
 path('timeout', views.timeout, name='timeout'),
 
 

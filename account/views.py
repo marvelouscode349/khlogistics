@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, UserUpdateForm, ProfileUpdateForm
+from .forms import RegistrationForm, UserUpdateForm, ProfileUpdateForm, AdminUpdateForm
 from . models import Account
 from django.contrib import messages, auth
 from django.http import HttpResponse
@@ -162,17 +162,36 @@ def login(request):
     return render(request, 'user/login.html')
 
 def profile(request):
+    user = request.user
     if request.method=='POST':
 
         userform = UserUpdateForm(request.POST, instance=request.user)
-        profileform = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile,)
+        profileform = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
         if userform.is_valid() and profileform.is_valid():
             userform.save()
             profileform.save()
             return redirect('profile')
     else:
         userform = UserUpdateForm(instance=request.user)
-        profileform = ProfileUpdateForm( instance=request.user.profile,)
+        profileform = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {'userform':userform, 'profileform':profileform}
+    return render(request, 'admin/profile.html', context)
+
+def adminprofile(request):
+    if request.method=='POST':
+
+        userform = UserUpdateForm(request.POST, instance=request.user)
+        profileform = AdminUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if userform.is_valid() and profileform.is_valid():
+            userform.save()
+            profileform.save()
+            return redirect('admin-profile')
+    else:
+        userform = UserUpdateForm(instance=request.user)
+        profileform = AdminUpdateForm(instance=request.user.profile)
 
     context = {'userform':userform, 'profileform':profileform}
     return render(request, 'admin/main_profile.html', context)
