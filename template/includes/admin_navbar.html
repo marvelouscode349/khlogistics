@@ -57,7 +57,6 @@
       <li class="nav-item nav-category">
         <span class="nav-link">Navigation</span>
       </li>
-      {% if request.user.is_approved == True %}
       <li class="nav-item menu-items">
         <a class="nav-link" href="{% url 'admin-dashboard' %}">
           <span class="menu-icon">
@@ -150,18 +149,7 @@
       
      
     
-      {% else %}
-
-      <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/tables/basic-table.html">
-          <span class="menu-icon">
-            <i class="mdi mdi-currency-ngn"></i>
-          </span>
-          <span class="menu-title">Make Payment</span>
-        </a>
-      </li>
-
-      {% endif %}
+    
      
     </ul>
   </nav>

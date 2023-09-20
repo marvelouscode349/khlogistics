@@ -158,3 +158,13 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AWS_ACCESS_KEY_ID = 'AKIAUVP2MYN3B3IWIF4N'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'kennedylogisticsbucket'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
