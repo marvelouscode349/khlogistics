@@ -17,13 +17,13 @@
               <span>{{user.username}}</span>
             </div>
           </div>
-          <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+          <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical fa-lg" style="color: white;"></i></a>
           <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
             <a href="{% url 'profile' %}" class="dropdown-item preview-item">
               <div class="preview-thumbnail">
                 <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-settings text-primary"></i>
-                </div>
+                  <i class="fa-regular fa-user"></i>      
+                          </div>
               </div>
               <div class="preview-item-content">
                 <p class="preview-subject ellipsis mb-1 text-small">profile</p>
@@ -33,8 +33,8 @@
             <a href="#" class="dropdown-item preview-item">
               <div class="preview-thumbnail">
                 <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-onepassword  text-info"></i>
-                </div>
+                  <i class="fa-solid fa-gears"></i>  
+                              </div>
               </div>
               <div class="preview-item-content">
                 <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
@@ -44,8 +44,7 @@
             <a href="{% url 'logout' %}" class="dropdown-item preview-item">
               <div class="preview-thumbnail">
                 <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-calendar-today text-success"></i>
-                </div>
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>                </div>
               </div>
               <div class="preview-item-content">
                 <p class="preview-subject ellipsis mb-1 text-small">LOG OUT</p>
@@ -60,8 +59,8 @@
       <li class="nav-item menu-items">
         <a class="nav-link" href="{% url 'admin-dashboard' %}">
           <span class="menu-icon">
-            <i class="mdi mdi-speedometer"></i>
-          </span>
+            <i class="fa-solid fa-laptop"></i>
+                    </span>
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
@@ -69,10 +68,10 @@
       <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
           <span class="menu-icon">
-            <i class="mdi mdi-security"></i>
+            <i class="fa-regular fa-user"  style="color: yellow;"></i>  
           </span>
           <span class="menu-title">User</span>
-          <i class="menu-arrow"></i>
+          <!-- <i class="fa-solid fa-caret-down" style="margin-left: 100px;"></i> -->
         </a>
         <div class="collapse" id="auth">
           <ul class="nav flex-column sub-menu">
@@ -90,10 +89,10 @@
       <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#ui-order" aria-expanded="false" aria-controls="ui-order">
           <span class="menu-icon">
-            <i class="mdi mdi-laptop"></i>
-          </span>
+            <i class="fa-solid fa-shop"  style="color: yellow;"></i>
+                    </span>
           <span class="menu-title">Orders</span>
-          <i class="menu-arrow"></i>
+          <!-- <i class="fa-solid fa-caret-down" style="margin-left: 100px;"></i> -->
         </a>
         <div class="collapse" id="ui-order">
           <ul class="nav flex-column sub-menu">
@@ -112,10 +111,10 @@
       <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#ui-stocks" aria-expanded="false" aria-controls="ui-stocks">
           <span class="menu-icon">
-            <i class="mdi mdi-laptop"></i>
-          </span>
+            <i class="fa-solid fa-group-arrows-rotate"  style="color: yellow;"></i>   
+                 </span>
           <span class="menu-title">stocks</span>
-          <i class="menu-arrow"></i>
+          <!-- <i class="fa-solid fa-caret-down" style="margin-left: 100px;"></i> -->
         </a>
         <div class="collapse" id="ui-stocks">
           <ul class="nav flex-column sub-menu">
@@ -130,10 +129,10 @@
       <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#ui-pay" aria-expanded="false" aria-controls="ui-stocks">
           <span class="menu-icon">
-            <i class="mdi mdi-laptop"></i>
-          </span>
+            <i class="fa-solid fa-receipt" style="color: yellow;"></i>
+                    </span>
           <span class="menu-title">Payments</span>
-          <i class="menu-arrow"></i>
+          <!-- <i class="fa-solid fa-caret-down" style="margin-left: 70px;"></i> -->
         </a>
         <div class="collapse" id="ui-pay">
           <ul class="nav flex-column sub-menu">
