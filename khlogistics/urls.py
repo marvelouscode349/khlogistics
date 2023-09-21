@@ -5,6 +5,7 @@ from dashboard import views
 
 from django.conf.urls.static import static
 from django.conf import settings
+from account.views import login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,5 +14,6 @@ urlpatterns = [
     path('stock/', include('stock.urls')),
     path('order/', include('order.urls')),
     path('payment/', include('payment.urls')),
+    path('', login, name='login')
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
